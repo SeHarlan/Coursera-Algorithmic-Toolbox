@@ -19,7 +19,7 @@ function readLine(line) {
   }
 }
 
-function func() {
+function func(n, m) {
 
 }
 
