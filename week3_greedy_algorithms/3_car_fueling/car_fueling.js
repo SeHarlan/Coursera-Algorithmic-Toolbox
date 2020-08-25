@@ -29,9 +29,24 @@ rl.once('line', line => {
 
 
 function func(distance, tank, stops) {
+  const path = [0, ...stops, distance]
+  let count = 0
+  let startIndex = 0
+  let distanceTraveled = distance
 
+  while (distance > 0) {
+    for (let i = startIndex; i <= path.length; i++) {
+      if (path[i] - path[startIndex] > tank) {
+        if (startIndex === i - 1) return -1
 
-  return -1
+        distanceTraveled = path[i - 1] - path[startIndex]
+        startIndex = i - 1
+        count++
+        break;
+      }
+    }
+    distance = distance - distanceTraveled
+  }
+  return count
 }
-
 module.exports = func
